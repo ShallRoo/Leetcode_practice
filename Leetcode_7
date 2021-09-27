@@ -1,0 +1,35 @@
+"""
+author：ShallRoo
+Created on 2021/9/27 11:40
+"""
+#采用数学方法
+#时间：24ms
+class Solution():
+    def reverse(self,x):
+        y=abs(x)
+        r=0
+        while y!=0:
+            r=r*10+y%10
+            y//=10
+        if -2**31<r<2**31-1:
+            return r if x>0 else -r
+        else:
+            return 0
+
+#内存占比均比较大，达到13.2mb
+#采用切片
+#时间：12ms
+
+class Solution(object):
+    def reverse(self,x):
+        sign = 1
+        if x<0:
+            sign = -1
+            x = -x
+        r=str(x)[::-1]
+        #采用列表切片，降低时间复杂度
+        r=int(r)
+        if r>2147483647 or r<-2147483648:
+            return 0
+        else:
+            return r*sign
